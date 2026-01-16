@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paradigma Coffee - Kedai Kopi Premium di Banjarnegara</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-brown: #3E2723;
+            --secondary-brown: #5D4037;
+            --accent-brown: #8D6E63;
+            --light-brown: #D7CCC8;
+            --cream: #EFEBE9;
+            --white: #FFFFFF;
+            --text-dark: #212121;
+            --text-light: #757575;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: background 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.75rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            height: 40px;
+        }
+
+        .logo-img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            color: var(--primary-brown);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-brown);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-brown);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(62, 39, 35, 0.7), rgba(62, 39, 35, 0.8)), 
+                        url('https://i.supaimg.com/365c401d-5679-4ac7-8e8b-71c41cdcb77f.jpg') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-logo-img {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            color: var(--white);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            color: var(--white);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-brown);
+        }
+
+        /* About Section */
+        .about {
+            background: var(--cream);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .about-image:hover {
+            transform: scale(1.02);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        /* Specialty Section */
+        .specialty-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .specialty-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .specialty-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .specialty-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .specialty-card-content {
+            padding: 2rem;
+        }
+
+        .specialty-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-brown);
+        }
+
+        .specialty-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Location Section */
+        .location {
+            background: var(--cream);
+        }
+
+        .location-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .location-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .info-item i {
+            font-size: 1.5rem;
+            color: var(--accent-brown);
+            margin-top: 0.25rem;
+        }
+
+        .info-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+            color: var(--primary-brown);
+        }
+
+        .info-item p {
+            color: var(--text-light);
+        }
+
+        /* Social Section */
+        .social-section {
+            text-align: center;
+            background: var(--white);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--primary-brown);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: transform 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+        }
+
+        .social-link.instagram {
+            background: linear-gradient(45deg, #E1306C, #C13584);
+        }
+
+        .social-link i {
+            font-size: 1.25rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-brown);
+            color: var(--white);
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1rem;
+            height: 50px;
+        }
+
+        .footer-logo-img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .footer-content p {
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-content p:last-child {
+            margin-top: 1rem;
+            opacity: 0.6;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0.75rem 1rem;
+            }
+
+            .logo {
+                height: 35px;
+            }
+
+            .logo-text {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-logo-img {
+                max-width: 250px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .social-link {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <img src="https://i.supaimg.com/2a0d1255-af85-4b29-afd1-e8b18a9bcb50.png" class="logo-img">
+                <span class="logo-text">Paradigma Coffee</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#specialty">Spesialisasi</a></li>
+                <li><a href="#location">Lokasi</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <img src="https://i.supaimg.com/2a0d1255-af85-4b29-afd1-e8b18a9bcb50.png" class="hero-logo-img">
+            <h1>Paradigma Coffee</h1>
+            <p>Pengalaman Kopi Premium di Banjarnegara</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="section-container">
+            <h2 class="section-title fade-in">Tentang Kami</h2>
+            <div class="about-content fade-in">
+                <div class="about-text">
+                    <p><strong>Paradigma Coffee</strong> Banjarnegara adalah destinasi kopi premium yang berlokasi strategis di Jl. S.Parman 18, Parakancanggah, Banjarnegara, Jawa Tengah. Kami berkomitmen untuk menyajikan pengalaman kopi terbaik dengan pilihan biji kopi berkualitas tinggi.</p>
+                    <p>Kedai kopi kami tidak hanya menyajikan minuman kopi istimewa, tetapi juga berbagai pilihan minuman non-kopi dan makanan ringan yang sempurna untuk menemani waktu santai Anda.</p>
+                    <p>Dengan fasilitas tempat duduk yang nyaman, Paradigma Coffee menjadi pilihan ideal untuk pertemuan bisnis, belajar, atau sekadar bersantai bersama teman dan keluarga.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://i.supaimg.com/a8382d88-6cd1-4f9f-8017-881c87965adf.jpg" alt="Interior Coffee Shop">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specialty Section -->
+    <section id="specialty" class="specialty">
+        <div class="section-container">
+            <h2 class="section-title fade-in">Spesialisasi Kami</h2>
+            <p class="fade-in" style="text-align: center; font-size: 1.1rem; color: var(--text-dark);">
+                Pastry Premium oleh <strong>@mymon.co</strong>
+            </p>
+            <div class="specialty-grid">
+                <div class="specialty-card fade-in">
+                    <img src="https://i.supaimg.com/a7e0a978-24c3-4b75-9fe7-1b906992d1ed.jpg" alt="Pastry">
+                    <div class="specialty-card-content">
+                        <h3>Pastry Premium</h3>
+                        <p>Kolaborasi eksklusif dengan @mymon.co menghadirkan pastry homemade berkualitas tinggi yang sempurna untuk menemani kopi favorit Anda.</p>
+                    </div>
+                </div>
+                <div class="specialty-card fade-in">
+                    <img src="https://i.supaimg.com/c1d79162-b2e6-494e-aeb3-cf2d2bfc8981.jpg" alt="Coffee">
+                    <div class="specialty-card-content">
+                        <h3>Minuman Kopi</h3>
+                        <p>Pilihan kopi spesial dari biji pilihan dengan teknik seduh yang presisi untuk menjamin cita rasa sempurna setiap saat.</p>
+                    </div>
+                </div>
+                <div class="specialty-card fade-in">
+                    <img src="https://i.supaimg.com/244b95c4-692a-45dc-b7fb-2a269d01daa4.jpg" alt="Non-Coffee">
+                    <div class="specialty-card-content">
+                        <h3>Minuman Non-Kopi</h3>
+                        <p>Pilihan minuman segar dan menyehatkan termasuk teh premium, chocolate, dan minuman kreasi khusus untuk semua kalangan.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section id="location" class="location">
+        <div class="section-container">
+            <h2 class="section-title fade-in">Lokasi & Jam Operasional</h2>
+            <div class="location-content fade-in">
+                <div class="location-info">
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Jam Buka</h4>
+                            <p>Setiap Hari: 09.00 - 23.00 WIB</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Alamat</h4>
+                            <p>Jl. S.Parman 18, Parakancanggah, Banjarnegara</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-utensils"></i>
+                        <div>
+                            <h4>Fasilitas</h4>
+                            <p>Tempat duduk nyaman untuk din-in<br>WiFi gratis</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-certificate"></i>
+                        <div>
+                            <h4>Spesialisasi</h4>
+                            <p>Pastry premium oleh @mymon.co<br>Kopi specialty<br>Menu non-kopi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="social-section">
+        <div class="section-container">
+            <h2 class="section-title fade-in">Hubungi Kami</h2>
+            <p class="fade-in" style="font-size: 1.1rem; color: var(--text-dark);">
+                Ikuti kami untuk update terbaru dan promo menarik!
+            </p>
+            <div class="social-links fade-in">
+                <a href="https://www.instagram.com/paradigma__coffee?igsh=MWpsYzl2dGxoMTNocQ==" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="social-link instagram">
+                    <i class="fab fa-instagram"></i>
+                    <span>@paradigma__coffee</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <a href="#home" class="footer-logo">
+                <img src="https://i.supaimg.com/7159720f-6486-4266-a50c-26580f5c42ea.png" alt="Paradigma Coffee" class="footer-logo-img">
+            </a>
+            <p>Jl. S.Parman 18, Parakancanggah, Banjarnegara</p>
+            <p>Jam Operasional: 09.00 - 23.00 WIB</p>
+            <p style="margin-top: 1rem; opacity: 0.6;">
+                &copy; 2024 Paradigma Coffee. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
